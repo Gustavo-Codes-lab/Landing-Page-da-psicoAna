@@ -135,20 +135,24 @@
             transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: inline-flex;
             align-items: center;
-            gap: 12px; /* Espaço um pouco maior para a imagem maior */
+            gap: 12px;
+            /* Espaço um pouco maior para a imagem maior */
             line-height: 1;
         }
 
         .logo-image {
-            width: 80px; /* Aumentado de 55px */
-            height: 80px; /* Aumentado de 55px */
-            margin-bottom: -5px; /* Ajuste fino de alinhamento vertical com a fonte manuscrita */
+            width: 80px;
+            /* Aumentado de 55px */
+            height: 80px;
+            /* Aumentado de 55px */
+            margin-bottom: -5px;
+            /* Ajuste fino de alinhamento vertical com a fonte manuscrita */
             display: inline-block;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
             animation: floatLogo 4s infinite ease-in-out;
             object-fit: contain;
             /* Usamos mix-blend-mode só por segurança caso o fundo gerado não tenha ficado 100% igual */
-            mix-blend-mode: multiply; 
+            mix-blend-mode: multiply;
         }
 
         .logo:hover .logo-image {
@@ -157,8 +161,15 @@
         }
 
         @keyframes floatLogo {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
         }
 
         .menu-toggle {
@@ -779,7 +790,8 @@
         /* Responsividade (Media Queries) */
         @media (max-width: 1024px) {
             .menu-toggle {
-                display: block; /* Revela botão das 3 barras */
+                display: block;
+                /* Revela botão das 3 barras */
             }
 
             nav {
@@ -872,7 +884,7 @@
             .section-title {
                 font-size: 1.8rem;
             }
-            
+
             .hero h1 {
                 font-size: 2.2rem;
             }
@@ -882,7 +894,7 @@
                 max-width: 300px;
                 margin: 0 auto;
             }
-            
+
             .hero-img::before {
                 right: 50%;
                 transform: translateX(50%);
@@ -898,7 +910,8 @@
                 width: 90%;
                 right: 5%;
                 bottom: 90px;
-                height: 450px; /* Reduz chat no mobile pequeno */
+                height: 450px;
+                /* Reduz chat no mobile pequeno */
             }
 
             .chat-toggle {
