@@ -15,18 +15,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-        /* Paleta de Cores: Terrosos e Acolhedores (Mais Vivas) */
+        /* Paleta de Cores Atualizada pelo Usuário */
         :root {
-            --bg-warm-beige: #FAEFDE;
-            /* Bege quente vibrante */
+            --bg-warm-beige: #F4EFEA;
+            /* Bege clarinho da Imagem 1 (Fundo contínuo) */
             --text-dark: #2C2623;
-            /* Marrom profundo */
             --accent-olive: #6D8A47;
-            /* Verde oliva vivo */
-            --accent-caramel: #B35A27;
-            /* Cobre queimado */
+            --accent-caramel: #B55B27;
+            /* Caramelo exato da Imagem 2 (Fonte e Logo) */
             --accent-dusty-rose: #D87F7F;
-            /* Rosa queimado mais vivo */
             --white: #FFFFFF;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -142,22 +139,23 @@
 
         .logo-image {
             width: 80px;
-            /* Aumentado de 55px */
             height: 80px;
-            /* Aumentado de 55px */
             margin-bottom: -5px;
-            /* Ajuste fino de alinhamento vertical com a fonte manuscrita */
             display: inline-block;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
             animation: floatLogo 4s infinite ease-in-out;
             object-fit: contain;
-            /* Usamos mix-blend-mode só por segurança caso o fundo gerado não tenha ficado 100% igual */
+
+            /* Torna o fundo branco/cinza 100% transparente */
             mix-blend-mode: multiply;
+            /* Filtro de brilho e contraste para eliminar totalmente qualquer resíduo cinza do quadrado original, deixando apenas as linhas escuras. O tom sépia devolve o caramelo suave. */
+            filter: grayscale(1) contrast(1.5) brightness(1.1) sepia(1) hue-rotate(335deg) saturate(3);
+            opacity: 0.9;
         }
 
         .logo:hover .logo-image {
             transform: scale(1.1) rotate(5deg);
-            filter: brightness(1.1);
+            filter: grayscale(1) contrast(1.5) brightness(1.1) sepia(1) hue-rotate(335deg) saturate(3.5);
         }
 
         @keyframes floatLogo {
@@ -283,6 +281,8 @@
             height: 100%;
             object-fit: cover;
             object-position: center top;
+            transform: scale(1.15);
+            /* Disfarçar logo do Gemini nas bordas */
         }
 
         /* Elemento Decorativo Atrás da Imagem */
@@ -326,6 +326,8 @@
             width: 100%;
             height: auto;
             display: block;
+            transform: scale(1.15);
+            /* Disfarça logo lateral */
         }
 
         .about-text {
@@ -789,6 +791,19 @@
 
         /* Responsividade (Media Queries) */
         @media (max-width: 1024px) {
+            header {
+                padding: 1rem 5%;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            .logo-image {
+                width: 65px;
+                height: 65px;
+            }
+
             .menu-toggle {
                 display: block;
                 /* Revela botão das 3 barras */
@@ -878,9 +893,31 @@
             section {
                 padding: 4rem 5%;
             }
+
+            /* Alteração de fundo no mobile para não misturar com a seção anterior */
+            #destaque {
+                background-color: #EDE3D4 !important;
+                /* Bege ligeiramente mais escuro para gerar mais contraste */
+                box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.02);
+                /* Sombra para separar as seções */
+            }
         }
 
         @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 5%;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+                gap: 8px; /* Reduz espaço entre icone e texto no mobile */
+            }
+
+            .logo-image {
+                width: 50px;
+                height: 50px;
+            }
+
             .section-title {
                 font-size: 1.8rem;
             }
@@ -1014,8 +1051,7 @@
     <header>
         <a href="#inicio" class="logo">
             Ana Beatriz
-            <span style="display: flex; align-items: center;">
-                <img src="./imagens.jpg/logo_mente_fio.png" alt="Mente e Fio Logo" class="logo-image">
+            <img src="./imagens.jpg/logo_mente_fio.png" alt="Mente e Fio Logo" class="logo-image">
             </span>
         </a>
         <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
@@ -1074,7 +1110,7 @@
 
     <!-- Sessão Estratégica -->
     <section id="destaque" class="about reveal"
-        style="background-color: var(--white); padding-top: 6rem; padding-bottom: 6rem;">
+        style="background-color: var(--bg-warm-beige); padding-top: 6rem; padding-bottom: 6rem;">
         <div class="about-text">
             <h2 class="section-title">O Terapêutico em Foco</h2>
             <p style="font-size: 1.15rem; color: #555; margin-bottom: 1.5rem;">O ambiente da sessão é desenhado para
