@@ -126,10 +126,17 @@
             font-size: 2.6rem;
             color: var(--accent-caramel);
             text-decoration: none;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: inline-flex;
             align-items: center;
             line-height: 1;
+            position: relative;
+        }
+
+        .logo:hover {
+            transform: scale(1.08) rotate(-2deg);
+            color: var(--accent-olive);
+            text-shadow: 2px 2px 8px rgba(109, 138, 71, 0.2);
         }
 
         .menu-toggle {
@@ -1003,7 +1010,6 @@
     <header>
         <a href="#inicio" class="logo">
             Ana Beatriz
-            <img src="./imagens.jpg/logo_mente_fio.png" alt="Mente e Fio Logo" class="logo-image">
         </a>
         <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         <nav>
