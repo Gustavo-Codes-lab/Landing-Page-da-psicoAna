@@ -163,7 +163,7 @@
         }
 
         nav a:not(.btn) { padding-bottom: 4px; }
-        nav a:not(.btn)::after {
+        nav a:not(.btn):after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
             background-color: var(--accent-dusty-rose); transition: width 0.3s ease;
         }
@@ -210,8 +210,26 @@
         .about-text h2::after { left: 0; transform: none; }
         .about-text p { margin-bottom: 1.2rem; font-size: 1.1rem; color: #444; }
 
-        /* 3. Dores do Público */
-        .services { background-color: var(--accent-olive); color: var(--bg-warm-beige); }
+        /* 3. Destaque (Curva para a seção verde) */
+        #destaque {
+            background-color: var(--bg-warm-beige); 
+            padding-top: 6rem; 
+            padding-bottom: 6rem;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        /* 4. Dores do Público */
+        .services {
+            background-color: var(--accent-olive);
+            color: var(--bg-warm-beige);
+            margin-top: -50px; 
+            padding-top: 10rem; 
+        }
+
         .services .section-title { color: var(--bg-warm-beige); }
         .services .section-title::after { background-color: var(--accent-caramel); }
 
@@ -287,7 +305,7 @@
         @keyframes typingDots { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Testimonials Section */
+        /* Testimonials Section (Mantido conforme solicitado) */
         .testimonials-wrapper { background-color: var(--bg-warm-beige); padding: 3rem 5% 4rem; }
         .testimonials-slider { width: 100%; max-width: 1200px; margin: 0 auto; padding-bottom: 2rem; padding-left: 10px; padding-right: 10px; }
         .swiper-slide { height: auto; }
@@ -315,7 +333,7 @@
 
         .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem; margin-top: 4rem; font-size: 0.9rem; opacity: 0.7; }
 
-        /* Floating WhatsApp Button - MOVIDO PARA A ESQUERDA GLOBALMENTE PARA EVITAR CONFLITO COM O CHATBOT */
+        /* Floating WhatsApp Button - Canto Esquerdo */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 30px; left: 30px; 
             background-color: #25d366; color: #FFF; border-radius: 50%; text-align: center;
@@ -363,10 +381,9 @@
 
         @media (max-width: 768px) {
             header { padding: 0.8rem 5%; }
-            /* Mais respiro lateral no celular */
-            section { padding: 4rem 8%; }
-            /* Cards com respiro interno equilibrado */
-            .card { padding: 1.8rem; }
+            section { padding: 4rem 8%; } 
+            
+            .card { padding: 1.8rem; } 
             
             .logo-name { font-size: 2.2rem; }
             .logo-subtitle { font-size: 0.75rem; }
@@ -381,7 +398,7 @@
 
             .chat-container { width: 90%; right: 5%; bottom: 90px; height: 450px; }
             .chat-toggle { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 1.2rem; }
-            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 25px; }
+            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 25px;}
         }
     </style>
 </head>
@@ -414,7 +431,7 @@
         </div>
         <div class="hero-img">
             <div class="hero-img-container">
-                <img src="./imagens.jpg/aprensentação.psico.jpg" alt="Ana Beatriz sorrindo, psicóloga">
+                <img src="./imagens.jpg/apresentação.jpeg" alt="Ana Beatriz sorrindo, psicóloga">
             </div>
         </div>
     </section>
@@ -422,7 +439,7 @@
     <section id="sobre" class="about reveal">
         <div class="about-img">
             <div class="about-img-container">
-                <img src="./imagens.jpg/perfil.ana.png" alt="Oi, eu sou a Ana Beatriz">
+                <img src="./imagens.jpg/perfil.png" alt="Oi, eu sou a Ana Beatriz">
             </div>
         </div>
         <div class="about-text">
@@ -442,8 +459,7 @@
         </div>
     </section>
 
-    <section id="destaque" class="about reveal"
-        style="background-color: var(--bg-warm-beige); padding-top: 6rem; padding-bottom: 6rem;">
+    <section id="destaque" class="about reveal">
         <div class="about-text">
             <h2 class="section-title">Foco terapêutico</h2>
             <p style="font-size: 1.15rem; color: #555; margin-bottom: 1.5rem;">O ambiente da sessão é desenhado para
@@ -672,7 +688,7 @@
             }
         };
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Initialize on load
+        handleScroll(); 
 
         // 2. Reveal Animations (Intersection Observer)
         const observerOptions = {
@@ -685,7 +701,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Anima apenas uma vez
+                    observer.unobserve(entry.target); 
                 }
             });
         }, observerOptions);
@@ -701,7 +717,6 @@
             nav.classList.toggle('active');
         });
 
-        // Fechar menu ao clicar num link
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
@@ -723,21 +738,17 @@
         function toggleChatWidget(e) {
             chatbotWidget.classList.toggle('active');
 
-            // Lógica de Boas-Vindas da Aninha (roda apenas 1 vez ao abrir o chat)
             if (chatbotWidget.classList.contains('active') && !chatOpenedOnce) {
                 chatOpenedOnce = true;
 
-                // Mostra a bolinha de "digitando..."
                 const typingMsg = document.createElement('div');
                 typingMsg.className = 'typing-indicator';
                 typingMsg.innerHTML = '<span></span><span></span><span></span>';
                 chatMessages.appendChild(typingMsg);
 
-                // Espera 2 segundos como se ela tivesse te "visto" e estivesse escrevendo
                 setTimeout(() => {
                     chatMessages.removeChild(typingMsg);
 
-                    // Mensagem Injetada Dinamicamente + Opções
                     const welcomeMsgDiv = document.createElement('div');
                     welcomeMsgDiv.className = 'message bot';
                     welcomeMsgDiv.innerHTML = `
@@ -760,15 +771,12 @@
         chatToggle.addEventListener('click', toggleChatWidget);
         closeChat.addEventListener('click', toggleChatWidget);
 
-        // Vinculando o link do Menu "Dúvidas" para abrir o widget
         document.querySelector('a[href="#duvidas"]').addEventListener('click', (e) => {
-            e.preventDefault(); // Impede rolagem
-
-            // Só chama a lógica de abrir se já não estiver ativo
+            e.preventDefault(); 
             if (!chatbotWidget.classList.contains('active')) {
                 toggleChatWidget(e);
             }
-            nav.classList.remove('active'); // Fecha menu no celular
+            nav.classList.remove('active'); 
         });
 
         const respostasChat = {
@@ -780,27 +788,22 @@
         };
 
         function handleQuestion(question) {
-            // Remove botões para travar opção do usuário temporariamente
             const optionsBox = document.getElementById('initialOptions');
             if (optionsBox) optionsBox.style.display = 'none';
 
-            // Insere mensagem do usuário
             const userMsg = document.createElement('div');
             userMsg.className = 'message user';
             userMsg.textContent = question;
             chatMessages.appendChild(userMsg);
             scrollToBottom();
 
-            // Mostra o chat "digitando..."
             const typingMsg = document.createElement('div');
             typingMsg.className = 'typing-indicator';
             typingMsg.innerHTML = '<span></span><span></span><span></span>';
             chatMessages.appendChild(typingMsg);
             scrollToBottom();
 
-            // Sombra pra digitar (delay fake realista de 1.5s)
             setTimeout(() => {
-                // Remove o balãozinho de "digitando..."
                 chatMessages.removeChild(typingMsg);
 
                 const botMsg = document.createElement('div');
@@ -808,7 +811,6 @@
                 botMsg.textContent = respostasChat[question];
                 chatMessages.appendChild(botMsg);
 
-                // Mostra as opções novamente
                 const newOptions = document.createElement('div');
                 newOptions.className = 'chat-options';
                 newOptions.innerHTML = `
@@ -821,14 +823,12 @@
                 `;
                 botMsg.appendChild(newOptions);
                 scrollToBottom();
-
-                // Atualizar referência de botões para esconder no próximo click
                 newOptions.id = 'initialOptions'; 
 
             }, 1800);
         }
 
-        // 4. Swiper Initialization (Carrossel)
+        // 4. Swiper Initialization
         const swiper = new Swiper('.testimonials-slider', {
             slidesPerView: 1,
             spaceBetween: 20,
@@ -842,17 +842,10 @@
                 prevEl: '.swiper-button-prev',
             },
             breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30,
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                },
+                768: { slidesPerView: 2, spaceBetween: 30 },
+                1024: { slidesPerView: 3, spaceBetween: 30 },
             }
         });
     </script>
 </body>
-
 </html>
