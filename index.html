@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana Beatriz | Psicóloga Clínica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <meta name="author" content="Gustavo">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Caveat:wght@600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-        /* Paleta de Cores Atualizada */
+        /* Paleta de Cores Atualizada pelo Usuário */
         :root {
             --bg-warm-beige: #F4EFEA;
             --text-dark: #2C2623;
@@ -42,6 +46,7 @@
 
         .text-center { text-align: center; }
 
+        /* Títulos de Seção com Destaque Customizado */
         .section-title {
             font-size: 2.8rem;
             color: var(--accent-olive);
@@ -111,9 +116,10 @@
         .logo {
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
+            display: inline-flex;
             flex-direction: column;
             align-items: flex-start;
+            position: relative;
             line-height: 1;
         }
 
@@ -131,6 +137,7 @@
             color: var(--accent-olive);
             margin-top: 3px;
             letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
         .logo:hover { transform: scale(1.05) rotate(-1deg); }
@@ -144,11 +151,7 @@
             cursor: pointer;
         }
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
+        nav { display: flex; align-items: center; gap: 2rem; }
 
         nav a {
             text-decoration: none;
@@ -161,217 +164,94 @@
 
         nav a:not(.btn) { padding-bottom: 4px; }
         nav a:not(.btn)::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-dusty-rose);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background-color: var(--accent-dusty-rose); transition: width 0.3s ease;
         }
         nav a:not(.btn):hover::after { width: 100%; }
         nav a:not(.btn):hover { color: var(--accent-dusty-rose); transform: translateY(-2px); }
 
+        /* Espaçamento Padrão */
         section { padding: 8rem 5%; }
 
-        /* 1. Hero Section */
+        /* 1. Hero Section (Início) */
         .hero {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding-top: 10rem;
-            gap: 5rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(245, 235, 225, 1) 100%);
+            display: flex; align-items: center; justify-content: center; min-height: 100vh;
+            padding-top: 10rem; gap: 5rem; background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(245, 235, 225, 1) 100%);
         }
 
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-
+        .hero-content { flex: 1; max-width: 600px; z-index: 2; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 1.5rem; color: var(--text-dark); }
         .hero h1 i { color: var(--accent-olive); }
+        .hero p { font-size: 1.2rem; margin-bottom: 2.5rem; color: #555; line-height: 1.8; }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            color: #555;
-            line-height: 1.8;
-        }
-
-        .hero-img {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
+        .hero-img { flex: 1; display: flex; justify-content: center; position: relative; }
         .hero-img-container {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 4/5;
-            height: auto;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 8px solid var(--white);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 2;
+            width: 100%; max-width: 400px; aspect-ratio: 4/5; height: auto; border-radius: 16px;
+            overflow: hidden; border: 8px solid var(--white); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative; z-index: 2;
         }
-
-        .hero-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            transform: scale(1.15);
-        }
-
+        .hero-img-container img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transform: scale(1.15); }
         .hero-img::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background-color: var(--accent-dusty-rose);
-            border-radius: 16px;
-            top: 20px;
-            right: 0px;
-            z-index: 1;
-            opacity: 0.5;
+            content: ''; position: absolute; width: 100%; max-width: 400px; height: 100%;
+            background-color: var(--accent-dusty-rose); border-radius: 16px; top: 20px; right: 0px; z-index: 1; opacity: 0.5;
         }
 
         /* 2. Sobre Mim */
-        .about {
-            background-color: var(--white);
-            display: flex;
-            align-items: center;
-            gap: 5rem;
-        }
-
+        .about { background-color: var(--white); display: flex; align-items: center; gap: 5rem; }
         .about-img { flex: 1; position: relative; }
         .about-img-container {
-            width: 100%;
-            max-width: 450px;
-            margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            width: 100%; max-width: 450px; margin: 0 auto; border-radius: 16px;
+            overflow: hidden; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-
-        .about-img-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transform: scale(1.15);
-        }
+        .about-img-container img { width: 100%; height: auto; display: block; transform: scale(1.15); }
 
         .about-text { flex: 1.2; }
         .about-text h2 { text-align: left; margin-bottom: 1.5rem; }
         .about-text h2::after { left: 0; transform: none; }
-        .about-text p {
-            margin-bottom: 1.2rem;
-            font-size: 1.1rem;
-            color: #444;
-        }
+        .about-text p { margin-bottom: 1.2rem; font-size: 1.1rem; color: #444; }
 
-        /* 3. Destaque (Curva para a seção verde) */
-        #destaque {
-            background-color: var(--bg-warm-beige); 
-            padding-top: 6rem; 
-            padding-bottom: 6rem;
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-        }
-
-        /* 4. Dores do Público */
-        .services {
-            background-color: var(--accent-olive);
-            color: var(--bg-warm-beige);
-            margin-top: -50px; /* Sobrepõe levemente a curva da seção acima */
-            padding-top: 10rem; /* Compensa a margem negativa */
-        }
-
+        /* 3. Dores do Público */
+        .services { background-color: var(--accent-olive); color: var(--bg-warm-beige); }
         .services .section-title { color: var(--bg-warm-beige); }
         .services .section-title::after { background-color: var(--accent-caramel); }
 
         .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem; max-width: 1200px; margin: 0 auto;
         }
 
         .card {
-            background: var(--white);
-            color: var(--text-dark);
-            padding: 2.5rem 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: var(--white); color: var(--text-dark); padding: 2.5rem 2rem;
+            border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            z-index: 1;
-            border-bottom: 4px solid var(--accent-caramel);
-            text-align: left;
-            overflow: hidden;
+            position: relative; z-index: 1; border-bottom: 4px solid var(--accent-caramel);
+            text-align: left; overflow: hidden;
         }
-
         .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 0;
-            background: rgba(221, 127, 51, 0.05);
-            transition: height 0.4s ease;
-            z-index: -1;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 0;
+            background: rgba(221, 127, 51, 0.05); transition: height 0.4s ease; z-index: -1;
         }
-
-        .card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(221, 127, 51, 0.2);
-            border-bottom-color: var(--accent-olive);
-        }
-
+        .card:hover { transform: translateY(-15px) scale(1.03); box-shadow: 0 20px 40px rgba(221, 127, 51, 0.2); border-bottom-color: var(--accent-olive); }
         .card:hover::before { height: 100%; }
         .card:hover .card-icon { transform: scale(1.2) rotate(10deg); color: var(--accent-caramel); }
 
-        .card-icon {
-            font-size: 2.5rem;
-            color: var(--accent-dusty-rose);
-            margin-bottom: 1.5rem;
-            transition: all 0.4s ease;
-        }
-
+        .card-icon { font-size: 2.5rem; color: var(--accent-dusty-rose); margin-bottom: 1.5rem; transition: all 0.4s ease; }
         .card h3 { margin-bottom: 1rem; font-size: 1.3rem; color: var(--accent-olive); min-height: 50px; }
         .card p { color: #555; }
 
-        /* 5. Mini Chat Widget */
+        /* Mini Chat Widget (Flutuante) */
         .chat-toggle {
             position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
             border-radius: 50%; background-color: var(--accent-caramel); color: var(--white);
-            border: none; font-size: 1.5rem; cursor: pointer;
-            box-shadow: 0 5px 20px rgba(179, 90, 39, 0.4); z-index: 999;
-            transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center;
+            border: none; font-size: 1.5rem; cursor: pointer; box-shadow: 0 5px 20px rgba(179, 90, 39, 0.4);
+            z-index: 999; transition: transform 0.3s ease; display: flex; align-items: center; justify-content: center;
         }
         .chat-toggle:hover { transform: scale(1.1); }
 
         .chat-container {
             position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px;
-            max-height: 75vh; background: var(--white); border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); z-index: 1000;
-            display: flex; flex-direction: column; opacity: 0; pointer-events: none;
+            max-height: 75vh; background: var(--white); border-radius: 20px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            z-index: 1000; display: flex; flex-direction: column; opacity: 0; pointer-events: none;
             transform: translateY(20px); transition: all 0.3s ease; border: 1px solid rgba(0, 0, 0, 0.05);
         }
         .chat-container.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
@@ -386,43 +266,41 @@
         .chat-header-info h3 { margin: 0; font-size: 1.1rem; font-family: 'Montserrat', sans-serif; }
         .chat-header-info p { margin: 0; font-size: 0.85rem; opacity: 0.9; }
 
-        .chat-messages {
-            flex-grow: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column;
-            gap: 1rem; background-color: #FAFAFA;
-        }
-
-        .message {
-            max-width: 80%; padding: 1rem 1.2rem; border-radius: 15px; font-size: 0.95rem;
-            line-height: 1.5; animation: fadeIn 0.3s ease;
-        }
+        .chat-messages { flex-grow: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; background-color: #FAFAFA; }
+        .message { max-width: 80%; padding: 1rem 1.2rem; border-radius: 15px; font-size: 0.95rem; line-height: 1.5; animation: fadeIn 0.3s ease; }
         .message.bot { background-color: var(--bg-warm-beige); color: var(--text-dark); align-self: flex-start; border-bottom-left-radius: 0; }
         .message.user { background-color: var(--accent-olive); color: var(--white); align-self: flex-end; border-bottom-right-radius: 0; box-shadow: 0 4px 10px rgba(109, 138, 71, 0.2); }
 
         .chat-options { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
         .chat-option-btn {
             background-color: transparent; border: 1px solid var(--accent-caramel); color: var(--accent-caramel);
-            padding: 0.8rem 1rem; border-radius: 10px; cursor: pointer; text-align: left;
-            font-family: 'Montserrat', sans-serif; font-size: 0.9rem; transition: var(--transition);
+            padding: 0.8rem 1rem; border-radius: 10px; cursor: pointer; text-align: left; font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem; transition: var(--transition);
         }
         .chat-option-btn:hover { background-color: var(--accent-caramel); color: var(--white); }
 
-        /* Typing Indicator */
-        .typing-indicator {
-            background-color: var(--bg-warm-beige); padding: 1rem 1.2rem; border-radius: 15px;
-            border-bottom-left-radius: 0; display: inline-flex; align-items: center; gap: 5px;
-            max-width: 80px; animation: fadeIn 0.3s ease; color: var(--accent-caramel);
-        }
-        .typing-indicator span {
-            width: 8px; height: 8px; background-color: var(--accent-caramel); border-radius: 50%;
-            animation: typingDots 1.4s infinite ease-in-out both;
-        }
+        .typing-indicator { background-color: var(--bg-warm-beige); padding: 1rem 1.2rem; border-radius: 15px; border-bottom-left-radius: 0; display: inline-flex; align-items: center; gap: 5px; max-width: 80px; animation: fadeIn 0.3s ease; color: var(--accent-caramel); }
+        .typing-indicator span { width: 8px; height: 8px; background-color: var(--accent-caramel); border-radius: 50%; animation: typingDots 1.4s infinite ease-in-out both; }
         .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
         .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
 
         @keyframes typingDots { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 6. Footer */
+        /* Testimonials Section */
+        .testimonials-wrapper { background-color: var(--bg-warm-beige); padding: 3rem 5% 4rem; }
+        .testimonials-slider { width: 100%; max-width: 1200px; margin: 0 auto; padding-bottom: 2rem; padding-left: 10px; padding-right: 10px; }
+        .swiper-slide { height: auto; }
+        .testimonial-card { background-color: var(--white); padding: 1.8rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); position: relative; transition: transform 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08); }
+        .testimonial-card i.fa-quote-left { font-size: 2rem; color: var(--accent-dusty-rose); opacity: 0.6; margin-bottom: 1rem; }
+        .testimonial-text { font-size: 1.05rem; color: #555; line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; flex-grow: 1; }
+        .testimonial-author { font-family: 'Playfair Display', serif; font-weight: 600; color: var(--accent-olive); display: flex; align-items: center; gap: 10px; }
+        .testimonial-author::before { content: ''; width: 20px; height: 2px; background-color: var(--accent-caramel); display: inline-block; }
+        .swiper-pagination-bullet-active { background-color: var(--accent-caramel) !important; }
+        .swiper-button-next, .swiper-button-prev { color: var(--accent-olive) !important; transform: scale(0.7); }
+
+        /* Footer / Contato */
         footer { background-color: var(--text-dark); color: var(--bg-warm-beige); padding: 5rem 5% 2rem 5%; text-align: center; }
         .footer-content { max-width: 800px; margin: 0 auto 3rem auto; display: flex; flex-direction: column; align-items: center; }
         .footer-content h2 { margin-bottom: 1.5rem; font-size: 2.5rem; color: var(--bg-warm-beige); }
@@ -437,9 +315,9 @@
 
         .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2rem; margin-top: 4rem; font-size: 0.9rem; opacity: 0.7; }
 
-        /* Floating WhatsApp Button */
+        /* Floating WhatsApp Button - MOVIDO PARA A ESQUERDA GLOBALMENTE PARA EVITAR CONFLITO COM O CHATBOT */
         .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; left: 30px; /* Movido para esquerda para não chocar com o chat */
+            position: fixed; width: 60px; height: 60px; bottom: 30px; left: 30px; 
             background-color: #25d366; color: #FFF; border-radius: 50%; text-align: center;
             font-size: 30px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); z-index: 100;
             display: flex; align-items: center; justify-content: center; text-decoration: none; transition: var(--transition);
@@ -450,12 +328,11 @@
         .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); will-change: opacity, transform; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Responsividade (Mobile & Tablet) */
+        /* Responsividade (Media Queries) */
         @media (max-width: 1024px) {
             header { padding: 1rem 5%; }
-            .logo { font-size: 2.2rem; justify-content: center; }
-            .menu-toggle { display: flex; align-items: center; font-size: 1.5rem; }
-            
+            .logo { font-size: 2.2rem; }
+            .menu-toggle { display: block; font-size: 1.4rem; margin-top: -10px; }
             nav {
                 position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--bg-warm-beige);
                 flex-direction: column; padding: 0; max-height: 0; overflow: hidden;
@@ -477,16 +354,24 @@
             .chat-container { width: 330px; right: 25px; bottom: 85px; }
             .section-title { font-size: 2.2rem; }
             section { padding: 4rem 5%; }
+
+            #destaque {
+                background-color: #EDE3D4 !important; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+                border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; position: relative; z-index: 10;
+            }
         }
 
         @media (max-width: 768px) {
             header { padding: 0.8rem 5%; }
-            section { padding: 4rem 8%; } /* Respiro lateral maior para o texto não colar na tela */
-            
-            .card { padding: 1.8rem; } /* Cards com padding mais confortável no mobile */
+            /* Mais respiro lateral no celular */
+            section { padding: 4rem 8%; }
+            /* Cards com respiro interno equilibrado */
+            .card { padding: 1.8rem; }
             
             .logo-name { font-size: 2.2rem; }
             .logo-subtitle { font-size: 0.75rem; }
+            .logo { gap: 8px; }
+            
             .section-title { font-size: 1.8rem; }
             .hero h1 { font-size: 2.2rem; }
             
@@ -496,7 +381,7 @@
 
             .chat-container { width: 90%; right: 5%; bottom: 90px; height: 450px; }
             .chat-toggle { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 1.2rem; }
-            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 25px;}
+            .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; font-size: 25px; }
         }
     </style>
 </head>
@@ -513,6 +398,7 @@
             <a href="#inicio">Início</a>
             <a href="#sobre">Sobre Mim</a>
             <a href="#abordagem">Como Funciona</a>
+            <a href="#duvidas">Dúvidas</a>
             <a href="https://wa.me/5511988984909?text=Ol%C3%A1%2C%20Ana%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o."
                 class="btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> Agendar Sessão</a>
         </nav>
@@ -521,8 +407,10 @@
     <section id="inicio" class="hero reveal">
         <div class="hero-content">
             <h1>Para quem vive <i>cansado</i> de ser forte o tempo todo.</h1>
-            <p>Psicoterapia online estruturada e acolhedora para lidar com ansiedade, culpa e autocrítica. Um espaço seguro para você voltar a respirar com calma.</p>
-            <a href="https://wa.me/5511988984909?text=Ol%C3%A1%2C%20Ana%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o." class="btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> Agendar minha primeira sessão</a>
+            <p>Psicoterapia online estruturada e acolhedora para lidar com ansiedade, culpa e autocrítica. Um espaço
+                seguro para você voltar a respirar com calma.</p>
+            <a href="https://wa.me/5511988984909?text=Ol%C3%A1%2C%20Ana%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o."
+                class="btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> Agendar minha primeira sessão</a>
         </div>
         <div class="hero-img">
             <div class="hero-img-container">
@@ -539,23 +427,34 @@
         </div>
         <div class="about-text">
             <h2 class="section-title">Sobre Mim</h2>
-            <p>Sou psicóloga e atuo com base na Terapia Cognitivo-Comportamental (TCC) e na Análise do Comportamento. Meu trabalho é oferecer uma terapia prática, estruturada e acolhedora, voltada para adultos que enfrentam ansiedade, autocrítica, sobrecarga emocional e dificuldades nos relacionamentos.</p>
-            <p>Atendo mulheres e jovens adultos, mas acolho todas as pessoas que desejam compreender melhor seus padrões emocionais e construir mudanças reais.</p>
-            <p>Acredito que a psicoterapia deve ser um espaço seguro, humano e sem julgamentos. Um lugar onde você não precisa chegar com tudo organizado ou saber exatamente o que dizer. A primeira sessão é justamente para isso: entender sua história, suas demandas e, juntos, estruturarmos um caminho possível.</p>
-            <p>Meu foco é ajudar você a organizar pensamentos, fortalecer sua autonomia emocional e desenvolver estratégias que façam sentido na sua rotina, no seu tempo, com consistência e clareza.</p>
-            <p style="font-size: 1.2rem; font-weight: 500; color: var(--accent-caramel); margin-top: 1.5rem;">Você não precisa dar conta de tudo sozinha(o).</p>
+            <p>Sou psicóloga e atuo com base na Terapia Cognitivo-Comportamental (TCC) e na Análise do Comportamento.
+                Meu trabalho é oferecer uma terapia prática, estruturada e acolhedora, voltada para adultos que
+                enfrentam ansiedade, autocrítica, sobrecarga emocional e dificuldades nos relacionamentos.</p>
+            <p>Atendo mulheres e jovens adultos, mas acolho todas as pessoas que desejam compreender melhor seus padrões
+                emocionais e construir mudanças reais.</p>
+            <p>Acredito que a psicoterapia deve ser um espaço seguro, humano e sem julgamentos. Um lugar onde você não
+                precisa chegar com tudo organizado ou saber exatamente o que dizer. A primeira sessão é justamente para
+                isso: entender sua história, suas demandas e, juntos, estruturarmos um caminho possível.</p>
+            <p>Meu foco é ajudar você a organizar pensamentos, fortalecer sua autonomia emocional e desenvolver
+                estratégias que façam sentido na sua rotina, no seu tempo, com consistência e clareza.</p>
+            <p style="font-size: 1.2rem; font-weight: 500; color: var(--accent-caramel); margin-top: 1.5rem;">Você não
+                precisa dar conta de tudo sozinha(o).</p>
         </div>
     </section>
 
-    <section id="destaque" class="about reveal">
+    <section id="destaque" class="about reveal"
+        style="background-color: var(--bg-warm-beige); padding-top: 6rem; padding-bottom: 6rem;">
         <div class="about-text">
             <h2 class="section-title">Foco terapêutico</h2>
-            <p style="font-size: 1.15rem; color: #555; margin-bottom: 1.5rem;">O ambiente da sessão é desenhado para proporcionar segurança e permitir que você olhe para suas questões com cuidado, no seu próprio ritmo.</p>
-            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Apoiar a organização dos seus pensamentos é o primeiro passo para uma maior autonomia emocional.</p>
+            <p style="font-size: 1.15rem; color: #555; margin-bottom: 1.5rem;">O ambiente da sessão é desenhado para
+                proporcionar segurança e permitir que você olhe para suas questões com cuidado, no seu próprio ritmo.
+            </p>
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Apoiar a organização dos seus pensamentos é
+                o primeiro passo para uma maior autonomia emocional.</p>
         </div>
         <div class="about-img">
-            <div class="about-img-container">
-                <img src="./imagens.jpg/perfil.ana.png" alt="Foto estratégica" style="transition: transform 0.5s ease;">
+            <div class="about-img-container" style="border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
+                <img src="./imagens.jpg/fotopisco.png" alt="Foto estratégica" style="transition: transform 0.5s ease;">
             </div>
         </div>
     </section>
@@ -567,7 +466,9 @@
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-cloud-bolt"></i></div>
                     <h3>Ansiedade e sobrecarga emocional</h3>
-                    <p>Preocupações constantes, mente acelerada, dificuldade de relaxar e sensação de estar sempre no limite. Na terapia, vamos identificar os pensamentos que alimentam essa ansiedade e construir estratégias práticas.</p>
+                    <p>Preocupações constantes, mente acelerada, dificuldade de relaxar e sensação de estar sempre no
+                        limite. Na terapia, vamos identificar os pensamentos que alimentam essa ansiedade e construir
+                        estratégias práticas para que você se sinta mais estável e segura no dia a dia.</p>
                 </div>
             </div>
 
@@ -575,7 +476,9 @@
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-heart-crack"></i></div>
                     <h3>Relacionamentos difíceis ou abusivos</h3>
-                    <p>Relações marcadas por insegurança, conflitos repetitivos, dependência emocional ou dificuldade em estabelecer limites. Trabalhamos o reconhecimento desses padrões e o fortalecimento da autoestima.</p>
+                    <p>Relações marcadas por insegurança, conflitos repetitivos, dependência emocional ou dificuldade em
+                        estabelecer limites. Trabalhamos o reconhecimento desses padrões, o fortalecimento da autoestima
+                        e o desenvolvimento de posicionamentos mais saudáveis.</p>
                 </div>
             </div>
 
@@ -583,7 +486,9 @@
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
                     <h3>Culpa excessiva e imposição de limites</h3>
-                    <p>Sentir que precisa dar conta de tudo, colocar as necessidades dos outros sempre em primeiro lugar e ter dificuldade em dizer “não”. A terapia ajuda você a compreender de onde vêm esses comportamentos.</p>
+                    <p>Sentir que precisa dar conta de tudo, colocar as necessidades dos outros sempre em primeiro lugar
+                        e ter dificuldade em dizer “não”. A terapia ajuda você a compreender de onde vêm esses
+                        comportamentos e a construir uma forma mais assertiva e equilibrada de se posicionar.</p>
                 </div>
             </div>
 
@@ -591,9 +496,112 @@
                 <div class="card">
                     <div class="card-icon"><i class="fa-regular fa-face-frown-open"></i></div>
                     <h3>Autocrítica e baixa autoestima</h3>
-                    <p>Exigência interna constante, comparação frequente e sensação de nunca ser suficiente. Vamos trabalhar as crenças que sustentam essa autocrítica e desenvolver uma relação mais saudável consigo mesma(o).</p>
+                    <p>Exigência interna constante, comparação frequente e sensação de nunca ser suficiente. Vamos
+                        trabalhar as crenças que sustentam essa autocrítica e desenvolver uma relação mais saudável e
+                        realista consigo mesma(o).</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="testimonials-wrapper reveal">
+        <h2 class="section-title text-center" style="display: block;">O que dizem sobre a terapia</h2>
+
+        <div class="swiper testimonials-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <div class="stars" style="color: #FFC107; margin-bottom: 15px; font-size: 1.1rem;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"A Beatriz é super inteligente e dedicada com o trabalho. Ela tem
+                            uma escuta ativa muito boa. Uma profissional que realmente se importa com o paciente. Não é
+                            só técnica, ela é humana e se importa com o que estamos passando. Além da humanização, onde
+                            ela te ouve, por cada detalhe do que você diz, correlaciona presente e passado e nos faz
+                            refletir e curar o momento presente. Ela me deu total apoio e assistência. Foi uma das
+                            melhores psicólogas que já tive o prazer de ter sido atendida. Sou muito grata!"</p>
+                        <div class="testimonial-author">Paciente</div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <div class="stars" style="color: #FFC107; margin-bottom: 15px; font-size: 1.1rem;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Minha experiência com a Ana tem sido muito boa, ela consegue criar
+                            um ambiente confortável, sabe escutar e consegue aconselhar muito bem."</p>
+                        <div class="testimonial-author">Paciente</div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <div class="stars" style="color: #FFC107; margin-bottom: 15px; font-size: 1.1rem;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Eu tive uma experiência muito leve. Sempre tive receio de fazer
+                            terapia por medo de me expor, mas nunca me senti desconfortável com a Ana Beatriz. Ela
+                            questiona sem pressão e presta muita atenção nas coisas que você nem percebe que falou."</p>
+                        <div class="testimonial-author">Paciente</div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <div class="stars" style="color: #FFC107; margin-bottom: 15px; font-size: 1.1rem;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Tive um retorno muito acolhedor mesmo em um momento tão delicado
+                            todo suporte apoio foi prestado com todo amor e carinho."</p>
+                        <div class="testimonial-author">Paciente</div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <div class="stars" style="color: #FFC107; margin-bottom: 15px; font-size: 1.1rem;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Uma ótima profissional, atenciosa, dedicada. Me sinto muito à
+                            vontade."</p>
+                        <div class="testimonial-author">Paciente</div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <div class="stars" style="color: #FFC107; margin-bottom: 15px; font-size: 1.1rem;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Extremamente atenciosa, delicada para falar e boa escuta."</p>
+                        <div class="testimonial-author">Paciente</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </section>
 
@@ -603,7 +611,7 @@
 
     <div class="chat-container" id="chatbotWidget">
         <div class="chat-header">
-            <img src="https://via.placeholder.com/40" alt="Assistente Aninha" class="chat-header-avatar">
+            <img src="./imagens.jpg/robo_aninha.png" alt="Assistente Aninha" class="chat-header-avatar">
             <div class="chat-header-info">
                 <h3>Assistente Aninha</h3>
                 <p>Digital & Interativa</p>
@@ -619,7 +627,8 @@
         <div class="footer-content reveal">
             <h2 class="serif">Pronta(o) para dar o primeiro passo?</h2>
             <p>Agende sua sessão e vamos começar essa jornada juntos.</p>
-            <a href="https://wa.me/5511988984909?text=Ol%C3%A1%2C%20Ana%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20como%20funciona%20o%20atendimento." target="_blank" class="btn"><i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp</a>
+            <a href="https://wa.me/5511988984909?text=Ol%C3%A1%2C%20Ana%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20como%20funciona%20o%20atendimento."
+                target="_blank" class="btn"><i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp</a>
         </div>
 
         <div class="contact-info reveal">
@@ -645,9 +654,12 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/5511988984909?text=Ol%C3%A1%2C%20Ana%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20como%20funciona%20o%20atendimento." class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/5511988984909?text=Ol%C3%A1%2C%20Ana%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20como%20funciona%20o%20atendimento."
+        class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <script>
         // 1. Header Scroll Effect
@@ -660,27 +672,40 @@
             }
         };
         window.addEventListener('scroll', handleScroll);
-        handleScroll();
+        handleScroll(); // Initialize on load
 
         // 2. Reveal Animations (Intersection Observer)
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
+                    observer.unobserve(entry.target); // Anima apenas uma vez
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
 
         // 3. Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
-        menuToggle.addEventListener('click', () => { nav.classList.toggle('active'); });
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar num link
         document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => { nav.classList.remove('active'); });
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
         });
 
         // Chat Widget Toggle Logic
@@ -691,28 +716,39 @@
 
         let chatOpenedOnce = false;
 
-        function scrollToBottom() { chatMessages.scrollTop = chatMessages.scrollHeight; }
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
 
         function toggleChatWidget(e) {
             chatbotWidget.classList.toggle('active');
 
+            // Lógica de Boas-Vindas da Aninha (roda apenas 1 vez ao abrir o chat)
             if (chatbotWidget.classList.contains('active') && !chatOpenedOnce) {
                 chatOpenedOnce = true;
+
+                // Mostra a bolinha de "digitando..."
                 const typingMsg = document.createElement('div');
                 typingMsg.className = 'typing-indicator';
                 typingMsg.innerHTML = '<span></span><span></span><span></span>';
                 chatMessages.appendChild(typingMsg);
 
+                // Espera 2 segundos como se ela tivesse te "visto" e estivesse escrevendo
                 setTimeout(() => {
                     chatMessages.removeChild(typingMsg);
+
+                    // Mensagem Injetada Dinamicamente + Opções
                     const welcomeMsgDiv = document.createElement('div');
                     welcomeMsgDiv.className = 'message bot';
                     welcomeMsgDiv.innerHTML = `
                         Olá! Que bom ter você aqui. Eu sou a <b>Assistente Aninha</b>, a robozinha da Ana. Como posso tirar suas dúvidas rápidas sobre as sessões hoje?
+                        
                         <div class="chat-options" id="initialOptions">
                             <button class="chat-option-btn" onclick="handleQuestion('Como funciona a primeira sessão?')">Como funciona a primeira sessão?</button>
                             <button class="chat-option-btn" onclick="handleQuestion('Qual a duração e a frequência dos encontros?')">Qual a duração e a frequência?</button>
                             <button class="chat-option-btn" onclick="handleQuestion('Você atende por plano de saúde?')">Atende por plano de saúde?</button>
+                            <button class="chat-option-btn" onclick="handleQuestion('A terapia é online? Funciona mesmo?')">Terapia online funciona?</button>
+                            <button class="chat-option-btn" onclick="handleQuestion('Quanto tempo dura a terapia?')">Quanto tempo dura a terapia?</button>
                         </div>
                     `;
                     chatMessages.appendChild(welcomeMsgDiv);
@@ -724,35 +760,55 @@
         chatToggle.addEventListener('click', toggleChatWidget);
         closeChat.addEventListener('click', toggleChatWidget);
 
+        // Vinculando o link do Menu "Dúvidas" para abrir o widget
+        document.querySelector('a[href="#duvidas"]').addEventListener('click', (e) => {
+            e.preventDefault(); // Impede rolagem
+
+            // Só chama a lógica de abrir se já não estiver ativo
+            if (!chatbotWidget.classList.contains('active')) {
+                toggleChatWidget(e);
+            }
+            nav.classList.remove('active'); // Fecha menu no celular
+        });
+
         const respostasChat = {
             'Como funciona a primeira sessão?': 'A primeira sessão é um espaço de escuta e acolhimento. Você pode falar sobre o que está vivendo, sem precisar chegar com tudo organizado. Eu conduzo a conversa com cuidado para pensarmos juntos nos próximos passos.',
             'Qual a duração e a frequência dos encontros?': 'As sessões têm duração média de 50 minutos e acontecem, na maioria das vezes, uma vez por semana. Tudo é ajustada de acordo com sua necessidade e momento.',
             'Você atende por plano de saúde?': 'Não atendo diretamente por convênios, mas emito recibos para que você possa solicitar o reembolso junto ao seu plano, caso ele possua essa cobertura.',
+            'A terapia é online? Funciona mesmo?': 'Sim! O meu atendimento é 100% online em plataforma segura. A modalidade online é reconhecida por ter excelente eficácia e permite que você esteja num ambiente confortável e seguro da sua escolha.',
+            'Quanto tempo dura a terapia?': 'Cada processo é único. Algumas demandas são trabalhadas num período breve, e outras exigem maior acompanhamento. Ao longo das sessões, avaliamos juntos a caminhada e seus objetivos.'
         };
 
         function handleQuestion(question) {
+            // Remove botões para travar opção do usuário temporariamente
             const optionsBox = document.getElementById('initialOptions');
             if (optionsBox) optionsBox.style.display = 'none';
 
+            // Insere mensagem do usuário
             const userMsg = document.createElement('div');
             userMsg.className = 'message user';
             userMsg.textContent = question;
             chatMessages.appendChild(userMsg);
             scrollToBottom();
 
+            // Mostra o chat "digitando..."
             const typingMsg = document.createElement('div');
             typingMsg.className = 'typing-indicator';
             typingMsg.innerHTML = '<span></span><span></span><span></span>';
             chatMessages.appendChild(typingMsg);
             scrollToBottom();
 
+            // Sombra pra digitar (delay fake realista de 1.5s)
             setTimeout(() => {
+                // Remove o balãozinho de "digitando..."
                 chatMessages.removeChild(typingMsg);
+
                 const botMsg = document.createElement('div');
                 botMsg.className = 'message bot';
                 botMsg.textContent = respostasChat[question];
                 chatMessages.appendChild(botMsg);
 
+                // Mostra as opções novamente
                 const newOptions = document.createElement('div');
                 newOptions.className = 'chat-options';
                 newOptions.innerHTML = `
@@ -760,29 +816,43 @@
                     <button class="chat-option-btn" onclick="handleQuestion('Como funciona a primeira sessão?')">Como funciona a primeira sessão?</button>
                     <button class="chat-option-btn" onclick="handleQuestion('Qual a duração e a frequência dos encontros?')">Qual a duração e a frequência?</button>
                     <button class="chat-option-btn" onclick="handleQuestion('Você atende por plano de saúde?')">Atende por plano de saúde?</button>
+                    <button class="chat-option-btn" onclick="handleQuestion('A terapia é online? Funciona mesmo?')">Terapia online funciona?</button>
+                    <button class="chat-option-btn" onclick="handleQuestion('Quanto tempo dura a terapia?')">Quanto tempo dura a terapia?</button>
                 `;
                 botMsg.appendChild(newOptions);
                 scrollToBottom();
-                newOptions.id = 'initialOptions';
+
+                // Atualizar referência de botões para esconder no próximo click
+                newOptions.id = 'initialOptions'; 
+
             }, 1800);
         }
+
+        // 4. Swiper Initialization (Carrossel)
+        const swiper = new Swiper('.testimonials-slider', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            }
+        });
     </script>
 </body>
+
 </html>
-
-- ___            ___            ___            ___
-  /\__\          /\__\          /\__\          /\__\
- /:/ _/_        /:/ _/_        /:/ _/_        /:/ _/_
-/:/ /\__\      /:/ /\__\      /:/ /\__\      /:/ /\__\
-/:/ /:/ _/_    /:/ /:/ _/_    /:/ /:/ _/_    /:/ /:/ _/_
-/:/_/:/ /\__\  /:/_/:/ /\__\  /:/_/:/ /\__\  /:/_/:/ /\__\
-\:\:\/:/ /:/  \:\:\/:/ /:/  \:\:\/:/ /:/  \:\:\/:/ /:/
- \:\::/_/:/    \:\::/_/:/    \:\::/_/:/    \:\::/_/:/
-  \:\:\/:/      \:\:\/:/      \:\:\/:/      \:\:\/:/
-   \:\::/        \:\::/        \:\::/        \:\::/
-    \:\/          \:\/          \:\/          \:\/
-
-    G              R              P              S
-
-    G.R.P.S — Gustavo Ribeiro Portfolio System
-    github.com/Gustavo-Codes-lab  */
