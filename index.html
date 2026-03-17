@@ -122,14 +122,44 @@
         }
 
         .logo {
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            line-height: 1;
+        }
+
+        .logo-name {
             font-family: 'Caveat', cursive;
             font-size: 2.6rem;
             color: var(--accent-caramel);
-            text-decoration: none;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: inline-flex;
-            align-items: center;
-            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .logo-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent-olive);
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            text-shadow: none;
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        .logo:hover .logo-name {
+            color: var(--accent-olive);
+            text-shadow: 2px 2px 8px rgba(109, 138, 71, 0.2);
+        }
+
+        .logo:hover .logo-subtitle {
+            color: var(--accent-caramel);
         }
 
         .menu-toggle {
@@ -230,7 +260,7 @@
             max-width: 400px;
             aspect-ratio: 4/5;
             height: auto;
-            border-radius: 20px 20px 150px 20px;
+            border-radius: 16px;
             overflow: hidden;
             border: 8px solid var(--white);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -255,7 +285,7 @@
             max-width: 400px;
             height: 100%;
             background-color: var(--accent-dusty-rose);
-            border-radius: 20px 20px 150px 20px;
+            border-radius: 16px;
             top: 20px;
             right: 0px;
             z-index: 1;
@@ -279,7 +309,7 @@
             width: 100%;
             max-width: 450px;
             margin: 0 auto;
-            border-radius: 150px 20px 20px 20px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
@@ -763,7 +793,8 @@
 
             .menu-toggle {
                 display: block;
-                /* Revela botão das 3 barras */
+                font-size: 1.4rem;
+                margin-top: -10px;
             }
 
             nav {
@@ -854,15 +885,25 @@
             /* Alteração de fundo no mobile para não misturar com a seção anterior */
             #destaque {
                 background-color: #EDE3D4 !important;
-                /* Bege ligeiramente mais escuro para gerar mais contraste */
-                box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.02);
-                /* Sombra para separar as seções */
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+                border-bottom-left-radius: 40px;
+                border-bottom-right-radius: 40px;
+                position: relative;
+                z-index: 10;
             }
         }
 
         @media (max-width: 768px) {
             header {
                 padding: 0.8rem 5%;
+            }
+
+            section {
+                padding: 4rem 8%;
+            }
+
+            .card {
+                padding: 1.5rem;
             }
 
             .logo {
@@ -1002,8 +1043,8 @@
 
     <header>
         <a href="#inicio" class="logo">
-            Ana Beatriz
-            <img src="./imagens.jpg/logo_mente_fio.png" alt="Mente e Fio Logo" class="logo-image">
+            <span class="logo-name">Ana Beatriz</span>
+            <span class="logo-subtitle">Psicóloga | CRP 06/224285</span>
         </a>
         <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
         <nav>
@@ -1057,7 +1098,7 @@
     <section id="destaque" class="about reveal"
         style="background-color: var(--bg-warm-beige); padding-top: 6rem; padding-bottom: 6rem;">
         <div class="about-text">
-            <h2 class="section-title">O Terapêutico em Foco</h2>
+            <h2 class="section-title">Foco terapêutico</h2>
             <p style="font-size: 1.15rem; color: #555; margin-bottom: 1.5rem;">O ambiente da sessão é desenhado para
                 proporcionar segurança e permitir que você olhe para suas questões com cuidado, no seu próprio ritmo.
             </p>
@@ -1065,7 +1106,7 @@
                 o primeiro passo para uma maior autonomia emocional.</p>
         </div>
         <div class="about-img">
-            <div class="about-img-container" style="border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
+            <div class="about-img-container" style="border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
                 <img src="./imagens.jpg/fotopisco.png" alt="Foto estratégica" style="transition: transform 0.5s ease;">
             </div>
         </div>
